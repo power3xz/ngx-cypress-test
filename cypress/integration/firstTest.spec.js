@@ -36,4 +36,25 @@ describe("Our first suite", () => {
     //The most recommended way by Cypress
     cy.get('[data-cy="inputEmail1"]');
   });
+
+  it.only("second test", () => {
+    cy.visit("/");
+    cy.contains("Forms").click();
+    cy.contains("Form Layouts").click();
+
+    cy.get('[data-cy="signInButton"]');
+
+    cy.contains("Sign in");
+
+    cy.contains('[status="warning"]', "Sign in");
+    cy.get(".sidebar-toggle").click();
+
+    cy.get("#inputEmail3")
+      .parents("form")
+      .find("button")
+      .should("contain", "Sign in")
+      .parents("form")
+      .find("nb-checkbox")
+      .click();
+  });
 });
